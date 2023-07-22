@@ -1,0 +1,56 @@
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000000;
+}
+.train-data {
+  margin: 10px 0;
+  padding: 20px;
+  border: 1px solid #00000032;
+  box-shadow: 0 0 10px #00000032;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+}
+.coach {
+  margin: 10px 0;
+  padding: 20px;
+  border: 1px solid #00000032;
+  box-shadow: 0 0 10px #00000032;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+}
+.coach-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  cursor: pointer;
+}
+.type {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000000;
+}
+.availability,
+.price {
+  color: #00000093;
+  text-align: center;
+  line-height: 1.5;
+}
+.availability span {
+  font-weight: bold;
+  color: var(--success);
+}
+.price span {
+  font-weight: bold;
+  color: #ff6c03;
+}
