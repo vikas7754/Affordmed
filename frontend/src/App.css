@@ -47,3 +47,10 @@ form button {
 .train-details {
   margin-top: 30px;
 }
+.train-details > div {
+  margin-top: 10px;
+}
+.price-data > div {
+  text-indent: 20px;
+  margin-top: 5px;
+}

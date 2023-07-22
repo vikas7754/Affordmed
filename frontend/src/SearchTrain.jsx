@@ -24,6 +24,9 @@ function SearchTrain() {
   };
   return (
     <div className="search">
+      <div className="btn">
+        <a href="/">Home</a>
+      </div>
       <h1 style={{ margin: "20px 0" }}>Search Train</h1>
       <form action="" onSubmit={getTrain}>
         <input
@@ -47,8 +50,8 @@ function SearchTrain() {
             </div>
             <div>Sleeper Availability : {train.seatsAvailable.sleeper}</div>
             <div>AC Availability : {train.seatsAvailable.AC}</div>
-            <div>
-              Price : <div>AC: {train.price.AC} ₹</div>
+            <div className="price-data">
+              Price :<div>AC: {train.price.AC} ₹</div>
               <div>Sleeper : {train.price.sleeper} ₹</div>
             </div>
             <div>Delay : {train.delayedBy} minutes</div>

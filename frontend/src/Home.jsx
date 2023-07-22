@@ -13,10 +13,8 @@ function Home() {
       try {
         const response = await axios.get("http://localhost:8000/api");
         setTrains(response.data);
-        console.log(response);
         setLoading(false);
       } catch (e) {
-        console.log(e?.response?.data?.message || e.message);
         setError(e?.response?.data?.message || e.message);
         setLoading(false);
       }

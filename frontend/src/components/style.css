@@ -54,3 +54,15 @@
   font-weight: bold;
   color: #ff6c03;
 }
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #0000007e;
+  padding: 0 10px;
+}
+@media screen and (max-width: 500px) {
+  .coach-container {
+    flex-direction: column;
+  }
+}
