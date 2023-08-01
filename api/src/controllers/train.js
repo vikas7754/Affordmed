@@ -31,13 +31,44 @@ const getAllTrains = async (req, res) => {
       config
     );
     if (!response) return res.status(404).json({ message: "No trains found" });
-    const trains = response.data;
-    const validTrains = trains.filter(
-      (train) => train.departureTime.Hours > 12
-    );
-    if (validTrains.length === 0)
-      return res.status(404).json({ message: "No trains found" });
-    return res.status(200).json(validTrains);
+    const trainData = response.data;
+
+    const currentTime = new Date();
+    const next12Hours = new Date(currentTime.getTime() + 12 * 60 * 60 * 1000);
+
+    const filteredTrains = trainData.filter((train) => {
+      const departureTime = new Date();
+      departureTime.setHours(train.departureTime.Hours);
+      departureTime.setMinutes(train.departureTime.Minutes);
+      departureTime.setSeconds(train.departureTime.Seconds);
+      return departureTime > currentTime && departureTime <= next12Hours;
+    });
+
+    const processedTrains = filteredTrains.map((train) => {
+      const departureTime = new Date();
+      departureTime.setHours(train.departureTime.Hours);
+      departureTime.setMinutes(train.departureTime.Minutes);
+      departureTime.setSeconds(train.departureTime.Seconds);
+      const delayInMinutes = train.delayedBy || 0;
+      departureTime.setMinutes(departureTime.getMinutes() + delayInMinutes);
+
+      return train;
+    });
+
+    const sortedTrains = processedTrains.sort((a, b) => {
+      if (a.price.sleeper !== b.price.sleeper) {
+        return a.price.sleeper - b.price.sleeper;
+      } else if (a.seatsAvailable.sleeper !== b.seatsAvailable.sleeper) {
+        return b.seatsAvailable.sleeper - a.seatsAvailable.sleeper;
+      } else {
+        // Sort by departure time in descending order
+        const departureTimeA = a.departureTime.getTime();
+        const departureTimeB = b.departureTime.getTime();
+        return departureTimeB - departureTimeA;
+      }
+    });
+
+    return res.status(200).json(sortedTrains);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
